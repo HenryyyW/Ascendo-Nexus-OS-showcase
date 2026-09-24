@@ -42,7 +42,7 @@ The configuration surface makes operating assumptions visible: environment, refr
 
 | Domain | Demonstrated experience |
 | --- | --- |
-| Fleet command | A four-aircraft fleet overview with live-looking health, SOC, temperature, RUL, mission, and warning states. |
+| Fleet command | A fleet-wide overview with live-looking health, SOC, temperature, RUL, mission, and warning states. |
 | Digital twin | Aircraft metadata and synchronized operational state presented as an inspectable asset record. |
 | Telemetry diagnostics | Propulsion, power, avionics, and sensor telemetry with condition labels and time-series visualizations. |
 | Predictive maintenance | RUL, anomaly score, battery delta, degradation context, and maintenance-warning presentation. |
