@@ -1,51 +1,80 @@
+<div align="center">
+
 # ASCENDO NEXUS OS
 
-> An operations-facing digital-twin showcase for eVTOL fleet health, predictive diagnostics, spatial awareness, and safety intelligence.
+### An operator-focused eVTOL fleet operations prototype
 
-**Ascendo Nexus OS** is a proof-of-concept command interface for monitoring an urban air-mobility fleet. It brings asset telemetry, health indicators, eVTOL trajectories, 3D city context, road conditions, weather context, and AI-oriented safety findings into one operator workspace.
+Fleet health, asset diagnostics, geospatial context, and safety workflows in one interactive showcase.
 
-It is designed to make the operator journey tangible: from fleet health and asset diagnosis to spatial awareness, safety assessment, and operational configuration.
+[Source application](https://github.com/HenryyyW/AeroNexus-OS) · [Showcase repository](https://github.com/HenryyyW/AeroNexus-OS-showcase)
+
+</div>
+
+> **Project status:** production-minded prototype, not a production flight-operations system. The interface demonstrates an end-to-end operator workflow and engineering direction; data, models, authentication, and operational integrations are not certified or ready for aircraft use.
+
+## Overview
+
+Ascendo Nexus OS explores how an urban air-mobility team could review fleet condition, investigate an aircraft, understand its position in city context, and consult structured safety information from a single workspace. The showcase is built around complete operator-facing surfaces rather than isolated charts: fleet overview, digital-twin view, diagnostics, safety review, and configuration.
+
+The implementation includes reusable React views, sensor-range validation, rule- and trend-based diagnostic logic, animated route playback, interactive map layers, and a Cesium-based 3D scene. These are meaningful foundations for a product prototype, but they do not imply validated aircraft models, a deployed backend, or operational approval.
 
 ## Product Showcase
 
-### Fleet Health Overview
+### Fleet Health
 
-The home workspace gives operators a compact, fleet-level view of aircraft state. Each asset exposes health, state of charge, temperature, remaining useful life, mission context, and a status classification so attention can move immediately to exceptions.
+The fleet overview brings aircraft status, health indicators, state of charge, temperature, mission context, and maintenance signals into a status-first view. Fleet readings and flight context currently originate from seeded example data and a local simulation, not connected aircraft.
 
-![Fleet Health Overview](assets/screenshots/fleet-health-overview.png)
+![Fleet health overview](assets/screenshots/fleet-health-overview.png)
 
-### Asset Diagnostics and Predictive Maintenance
+### Asset Diagnostics
 
-The diagnostics workspace combines subsystem telemetry with a predictive-maintenance matrix. Rotor, battery, avionics, and sensor readings are presented alongside trend charts, anomaly scoring, battery delta, and a maintenance warning surface.
+The diagnostics workspace organizes battery, rotor, avionics, and sensor indicators alongside time-series trends, anomaly scores, and maintenance context. The prototype includes input-range validation and experimental rule/statistical analysis to make the diagnostic path inspectable. Its warnings and remaining-life figures are demonstrative outputs, not maintenance instructions or validated prognostics.
 
-![Asset Diagnostics](assets/screenshots/asset-diagnostics.png)
+![Asset diagnostics](assets/screenshots/asset-diagnostics.png)
 
-### AI-Assisted Safety Context
+### Safety Review
 
-The detailed asset view pairs flight context with a cockpit feed and a structured safety assessment. Visual and audio findings are synthesized into risk status, possible causes, recommended actions, digital-twin notes, and maintenance metadata.
+The safety surface presents a structured review format for risk level, visual/audio observations, possible causes, and recommended follow-up. Current assessments are example content loaded with the aircraft data; no production computer-vision, audio, or multimodal inference service is connected.
 
-![AI-Assisted Safety Context](assets/screenshots/ai-safety-context.png)
+![AI-assisted safety context](assets/screenshots/ai-safety-context.png)
 
-### Spatial Synchronization
+### Spatial Operations
 
-The spatial workspace joins a live 3D scene with a 2D operational map. Operators can inspect eVTOL position and trajectory in Hong Kong, compare fleet routing with road-speed conditions, and review local weather context alongside aircraft altitude and speed.
+The spatial workspace pairs an interactive 2D map with a 3D geospatial view, aircraft markers, and route playback. Road-speed context can use a public Hong Kong traffic feed in the local Vite development setup; route positions remain predefined demo trajectories. External map tiles and optional road-network KML files require network access and local setup.
 
-![Spatial Synchronization](assets/screenshots/spatial-synchronization.png)
+![Spatial synchronization](assets/screenshots/spatial-synchronization.png)
 
-### Operational Configuration
+### Configuration
 
-The configuration surface makes operating assumptions visible: environment, refresh interval, camera and rendering options, data retention, logging, and predictive-model settings.
+Configuration controls expose the kinds of choices an operations product needs to make explicit, including display, map, telemetry, retention, and model options. In this prototype, selections are stored in browser local storage and do not configure a live service, data pipeline, or model deployment.
 
-![System Configuration](assets/screenshots/system-configuration.png)
+![System configuration](assets/screenshots/system-configuration.png)
 
-## Capabilities
+## What Works in This Prototype
 
-| Domain | Demonstrated experience |
-| --- | --- |
-| Fleet command | A fleet-wide overview with live-looking health, SOC, temperature, RUL, mission, and warning states. |
-| Digital twin | Aircraft metadata and synchronized operational state presented as an inspectable asset record. |
-| Telemetry diagnostics | Propulsion, power, avionics, and sensor telemetry with condition labels and time-series visualizations. |
-| Predictive maintenance | RUL, anomaly score, battery delta, degradation context, and maintenance-warning presentation. |
-| Spatial operations | Animated eVTOL routes, interactive 2D map overlays, strategic road-speed context, and 3D geospatial visualization. |
-| Safety intelligence | A UI contract for visual/audio observations, fused safety assessment, recommended action, and flight evidence. |
-| Operator ergonomics | Persistent navigation, selected-aircraft context, status-first visual hierarchy, and responsive dashboard layouts. |
+| Area | Implemented in the showcase | Boundary today |
+| --- | --- | --- |
+| Operator workflow | Fleet overview, selected-aircraft context, diagnostics, safety review, and settings views. | Demonstration workflow; no dispatch or aircraft-control commands. |
+| Fleet state | Seeded eVTOL records with locally simulated telemetry updates and predefined routes. | No live aircraft, certified sensor feed, or authoritative fleet record. |
+| Diagnostics | Sensor-range checks, anomaly indicators, trend displays, and rule/statistical analysis. | Experimental logic; not validated for safety-critical decisions or maintenance planning. |
+| Battery analysis | Offline replay and exploratory remaining-life calculations are available in the source application. | The included LFP cell dataset is not an eVTOL battery pack; estimates are not certified SOH/RUL. |
+| Geospatial view | Leaflet map overlays, route playback, and Cesium 3D visualization. | External map/feed availability varies; aircraft trajectories are examples. |
+| Safety review | Structured assessment presentation with example observations and recommendations. | No connected production AI inference or verified cockpit evidence pipeline. |
+| Configuration and access | Browser-persisted preferences and a demonstration sign-in screen. | No server-side identity, authorization, audit trail, or operational configuration backend. |
+
+## Run the Application
+
+The showcase repository contains this README and its screenshots. To run the interactive application, use the source repository:
+
+```bash
+git clone https://github.com/HenryyyW/AeroNexus-OS.git
+cd AeroNexus-OS
+npm install
+npm run dev
+```
+
+The application uses Vite, React, and Node.js. Some spatial layers need network access; the strategic road overlay may also require the external KML files described in the source repository's README. Firebase configuration is optional for the frontend and must be supplied locally where needed. Never commit service-account credentials.
+
+## Production Readiness
+
+This project is intended to communicate a product direction and demonstrate an integrated, operator-oriented interface. Before any operational use, it would need, at minimum, authenticated and authorized services, verified aircraft data integrations, traceable data provenance, validated prognostic models, robust failure handling and observability, security and privacy review, and formal aviation safety assurance. None of those are claimed by this showcase.
