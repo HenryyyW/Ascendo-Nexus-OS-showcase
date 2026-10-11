@@ -4,9 +4,7 @@
 
 ### An operator-focused eVTOL fleet and Digital Twin prototype
 
-Digital Twin development, fleet health, asset diagnostics, geospatial context, and safety workflows in one interactive showcase.
-
-[Source application](https://github.com/HenryyyW/AeroNexus-OS) · [Showcase repository](https://github.com/HenryyyW/AeroNexus-OS-showcase)
+Digital Twin development, fleet health, asset diagnostics, geospatial context, and safety workflows.
 
 </div>
 
@@ -69,23 +67,10 @@ Configuration controls expose the kinds of choices an operations product needs t
 | Digital Twin | Hierarchical aircraft/subsystem/component model; component condition and alert logic; source, method, sensor validation, confidence, and unknown-state presentation; Cesium and Leaflet spatial context. | Seeded/simulated state, heuristic proxies, and illustrative playback; no live aircraft sync or validated physical twin. |
 | Fleet state | Seeded eVTOL records with locally simulated telemetry updates and predefined routes. | No live aircraft, certified sensor feed, or authoritative fleet record. |
 | Diagnostics | Sensor-range checks, anomaly indicators, trend displays, and rule/statistical analysis. | Experimental logic; not validated for safety-critical decisions or maintenance planning. |
-| Battery analysis | Offline replay and exploratory remaining-life calculations are available in the source application. | The included LFP cell dataset is not an eVTOL battery pack; estimates are not certified SOH/RUL. |
+| Battery analysis | Offline replay and exploratory remaining-life calculations are part of the project. | The included LFP cell dataset is not an eVTOL battery pack; estimates are not certified SOH/RUL. |
 | Geospatial view | Leaflet map overlays, route playback, selectable weather stations, and Cesium 3D visualization. | External map/feed availability varies; aircraft trajectories are examples and are not position-synchronized. |
 | Safety review | Structured assessment presentation with example observations and recommendations. | No connected production AI inference or verified cockpit evidence pipeline. |
 | Configuration and access | Browser-persisted preferences and a demonstration sign-in screen. | No server-side identity, authorization, audit trail, or operational configuration backend. |
-
-## Run the Application
-
-The showcase repository contains this README and its screenshots. To run the interactive application, use the source repository:
-
-```bash
-git clone https://github.com/HenryyyW/AeroNexus-OS.git
-cd AeroNexus-OS
-npm install
-npm run dev
-```
-
-The application uses Vite, React, and Node.js. Some spatial layers need network access; the strategic road overlay may also require the external KML files described in the source repository's README. Firebase configuration is optional for the frontend and must be supplied locally where needed. Never commit service-account credentials.
 
 ## Production Readiness
 
