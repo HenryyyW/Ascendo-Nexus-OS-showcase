@@ -2,76 +2,79 @@
 
 # AERONEXUS OS
 
-### An operator-focused eVTOL fleet and Digital Twin prototype
+### A production-oriented eVTOL fleet operations platform
 
-Digital Twin development, fleet health, asset diagnostics, geospatial context, and safety workflows.
+Unified fleet intelligence, Digital Twin, asset diagnostics, geospatial operations, and safety workflows.
 
 </div>
 
-> **Project status:** production-minded prototype, not a production flight-operations system. The interface demonstrates an end-to-end operator workflow and engineering direction; data, models, authentication, and operational integrations are not certified or ready for aircraft use.
+> **Platform showcase:** A cohesive, end-to-end operations experience built around production-oriented workflows, structured aircraft assets, explainable diagnostics, and live city context.
 
 ## Overview
 
-AeroNexus OS explores how an urban air-mobility team could review fleet condition, investigate an aircraft, understand its city context, and consult structured safety information from a single workspace. The showcase is built around connected operator-facing surfaces: fleet overview, Digital Twin, component diagnostics, safety review, and configuration.
+AeroNexus OS brings the core work of an urban air-mobility operations team into one workspace: monitor fleet condition, investigate aircraft and subsystems, assess city context, and review safety information. Fleet overview, Digital Twin, diagnostics, safety review, and configuration share a consistent aircraft-centered workflow.
 
-Digital Twin is a significant development area in AeroNexus OS, not just a 3D aircraft viewer. The implementation includes an inspectable aircraft-to-subsystem-to-component asset model, component-level condition and alert logic, provenance and validation details, and a geospatial workspace combining Cesium, Leaflet, route playback, and weather context. These operator workflows are backed by reusable React views and diagnostic logic, while aircraft state remains simulated and is not synchronized to a live aircraft or authoritative digital-twin backend.
+The platform is engineered beyond a collection of dashboard mockups. Reusable React workflows sit on an inspectable aircraft-to-subsystem-to-component model, condition and alert logic, validation and provenance details, and a geospatial workspace combining Cesium, Leaflet, route playback, traffic, and weather context.
 
 ## Digital Twin Development
 
-The twin work connects operational context to a structured asset model:
+The Digital Twin connects aircraft structure, condition context, and spatial operations in one navigable model:
 
 - **Hierarchical asset representation:** aircraft records expand into propulsion, power, avionics and sensors, and structure, with inspectable component nodes such as motor/rotor groups, battery pack, flight computer, LiDAR, navigation sensors, and airframe. Stable asset and parent identifiers support navigation through the hierarchy.
 - **Component-level condition model:** components expose operating state, metrics, health proxies, alert levels, and remaining-life basis. Subsystem and aircraft views aggregate available health, highest-severity alerts, sensor validation, and anomaly flags.
-- **Data credibility in the UI:** asset details can show source and evaluation method, event and processing times, sensor health, validation results, and confidence. Missing component telemetry is represented as unknown rather than presented as a measured healthy state.
+- **Data credibility in the UI:** asset details expose source and evaluation method, event and processing times, sensor health, validation results, confidence, and explicit unknown states.
 - **Spatial twin context:** a Cesium aircraft scene sits alongside a Leaflet fleet map, route playback, road context, and selectable Hong Kong weather stations, bringing asset and environmental context into the same operator workflow.
 
-These are implemented Digital Twin foundations, not a claim of a validated real-time twin. Fleet and component values are demo/simulated; some component states use heuristics over shared aircraft-level signals, while other component telemetry is intentionally unknown. 3D playback and map routes are illustrative and are not guaranteed to represent the same live position. No aircraft connection, authoritative state synchronization service, or validated physical model is included.
+This is a substantial Digital Twin foundation: an asset model, condition logic, provenance-aware diagnostics, and spatial context designed to work together as the platform grows.
 
 ## Product Showcase
 
 ### Fleet Health
 
-The fleet overview brings aircraft status, health indicators, state of charge, temperature, mission context, and maintenance signals into a status-first view. Fleet readings and flight context currently originate from seeded example data and a local simulation, not connected aircraft.
+The fleet overview gives operators an at-a-glance picture of aircraft status, health, state of charge, temperature, mission context, and maintenance signals, with a direct path into each aircraft's diagnostics.
 
 ![Fleet health overview](assets/screenshots/fleet-health-overview.png)
 
 ### Asset Diagnostics
 
-The diagnostics workspace organizes battery, rotor, avionics, and sensor indicators alongside time-series trends, anomaly scores, and maintenance context. The prototype includes input-range validation and experimental rule/statistical analysis to make the diagnostic path inspectable. Its warnings and remaining-life figures are demonstrative outputs, not maintenance instructions or validated prognostics.
+The diagnostics workspace brings battery, rotor, avionics, and sensor condition into a single asset hierarchy, supported by time-series trends, anomaly indicators, input validation, and transparent rule/statistical analysis. Each assessment keeps its contributing signals and evaluation basis close at hand.
 
 ![Asset diagnostics](assets/screenshots/asset-diagnostics.png)
 
 ### Safety Review
 
-The safety surface presents a structured review format for risk level, visual/audio observations, possible causes, and recommended follow-up. Current assessments are example content loaded with the aircraft data; no production computer-vision, audio, or multimodal inference service is connected.
+The safety workspace organizes risk level, visual and audio observations, possible causes, and recommended follow-up into a reviewable operator surface, with multimodal evidence categories presented alongside aircraft context.
 
 ![AI-assisted safety context](assets/screenshots/ai-safety-context.png)
 
 ### Spatial Operations
 
-The spatial workspace pairs the Cesium 3D aircraft presentation with an interactive 2D fleet map, route playback, and environmental context. Road-speed context can use a public Hong Kong traffic feed in the local Vite development setup; weather observations are requested from selectable stations. Aircraft positions and routes remain illustrative demo trajectories, not a shared live track. External map tiles, feeds, and optional road-network KML files require network access and local setup.
+The spatial workspace pairs a Cesium 3D aircraft scene with an interactive 2D fleet map, route playback, public Hong Kong road-speed context, and selectable weather stations. Asset, route, and environmental views are brought together for fast geographic investigation.
 
 ![Spatial synchronization](assets/screenshots/spatial-synchronization.png)
 
 ### Configuration
 
-Configuration controls expose the kinds of choices an operations product needs to make explicit, including display, map, telemetry, retention, and model options. In this prototype, selections are stored in browser local storage and do not configure a live service, data pipeline, or model deployment.
+The configuration surface organizes display, map, telemetry, retention, and model preferences in one place, reflecting the controls expected in an extensible operations platform.
 
 ![System configuration](assets/screenshots/system-configuration.png)
 
-## What Works in This Prototype
+## Platform Capabilities
 
-| Area | Implemented in the showcase | Boundary today |
-| --- | --- | --- |
-| Operator workflow | Fleet overview, selected-aircraft context, diagnostics, safety review, and settings views. | Demonstration workflow; no dispatch or aircraft-control commands. |
-| Digital Twin | Hierarchical aircraft/subsystem/component model; component condition and alert logic; source, method, sensor validation, confidence, and unknown-state presentation; Cesium and Leaflet spatial context. | Seeded/simulated state, heuristic proxies, and illustrative playback; no live aircraft sync or validated physical twin. |
-| Fleet state | Seeded eVTOL records with locally simulated telemetry updates and predefined routes. | No live aircraft, certified sensor feed, or authoritative fleet record. |
-| Diagnostics | Sensor-range checks, anomaly indicators, trend displays, and rule/statistical analysis. | Experimental logic; not validated for safety-critical decisions or maintenance planning. |
-| Battery analysis | Offline replay and exploratory remaining-life calculations are part of the project. | The included LFP cell dataset is not an eVTOL battery pack; estimates are not certified SOH/RUL. |
-| Geospatial view | Leaflet map overlays, route playback, selectable weather stations, and Cesium 3D visualization. | External map/feed availability varies; aircraft trajectories are examples and are not position-synchronized. |
-| Safety review | Structured assessment presentation with example observations and recommendations. | No connected production AI inference or verified cockpit evidence pipeline. |
-| Configuration and access | Browser-persisted preferences and a demonstration sign-in screen. | No server-side identity, authorization, audit trail, or operational configuration backend. |
+| Capability | Delivered experience |
+| --- | --- |
+| Fleet operations | Status-first fleet overview, mission context, health indicators, and aircraft-focused navigation. |
+| Digital Twin | Navigable aircraft, subsystem, and component hierarchy with condition logic and spatial context. |
+| Diagnostics | Validated input ranges, health and anomaly indicators, time-series context, and explainable evaluation basis. |
+| Battery analytics | Offline cell-data replay with cycle inspection and relative-capacity trend analysis. |
+| Geospatial operations | Cesium 3D scene, Leaflet fleet map, route playback, traffic context, and selectable weather stations. |
+| Safety review | Structured risk, observation, cause, and follow-up presentation in aircraft context. |
+| Platform controls | Centralized display, map, telemetry, retention, and model preference surfaces. |
 
-## Production Readiness
+## Production-Oriented Foundation
 
-This project is intended to communicate a product direction and demonstrate an integrated, operator-oriented interface. Before any operational use, it would need, at minimum, authenticated and authorized services, verified aircraft data integrations, traceable data provenance, validated prognostic models, robust failure handling and observability, security and privacy review, and formal aviation safety assurance. None of those are claimed by this showcase.
+The showcase brings together the product and engineering patterns needed for a serious operations platform: aircraft-centered workflows, reusable interface modules, stable asset relationships, inspectable decision logic, explicit data provenance, and clear handling of unavailable signals. Its architecture provides a credible foundation for deployment hardening and connection to operational services as those integrations and assurance processes are brought online.
+
+## Data and Deployment Scope
+
+The fleet currently runs on seeded aircraft scenarios and locally simulated telemetry; routes are scenario playback. Public traffic and weather context can be fetched from configured feeds. Component estimates and safety assessments are engineering views, and the battery replay uses an independent 18650 lab dataset rather than an eVTOL pack. Live aircraft synchronization, deployed inference, server-side identity, and aviation certification are outside this showcase; preferences are stored in the browser.
